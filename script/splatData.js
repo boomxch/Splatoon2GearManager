@@ -29,7 +29,7 @@ function updateDataDisplay()
     
     $("#mainConsume").html(Splat2Data.getMainWeaponInkDetailString(mainWeapon, gear[1]));
     var subInkConsume = Splat2Data.calculateSubInkSaveUp(subWeapon.SIC, subWeapon.SISL, gear[2])
-    $("#subConsume").text((subInkConsume*100).toFixed(2) + "% (合計 " + Math.floor(1/subInkConsume) + " 連投可能)");
+    $("#subConsume").text((subInkConsume*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/subInkConsume) + " 連投可能)");
     var inkRecovery = Splat2Data.calculateInkRecoveryUp(mainWeapon.ITC, gear[3]);
     $("#inkRecovery").html("インク潜伏中 : " + (inkRecovery[0]/60).toFixed(2) + " 秒 ( " + inkRecovery[0] + " F)<br>"
                         + "通常時 : " + (inkRecovery[1]/60).toFixed(2) + " 秒 ( " + inkRecovery[1] + " F)");
@@ -183,79 +183,79 @@ class Splat2Data
         switch (mainWeapon.WT)
         {
             case "Shooter":
-                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 break;
             case "Shooter2":
                 res = "単発 : " +
-                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 res += "<br>連射 : " +
-                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume2) + " 発射撃可能)";
+                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume2) + " 発射撃可能)";
                 break;
             case "Blaster":
-                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 break;
             case "Blaster2":
-                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 break;
             case "Roller":
                 res = "振り : " +
-                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 回使用可能)";
+                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 回使用可能)";
                 //res += "<br>轢き : " +
-                //        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume2) + " F使用可能)";
+                //        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume2) + " F使用可能)";
                 break;
             case "Roller2":
                 res = "振り : " +
-                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 回使用可能)";
+                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 回使用可能)";
                 //res += "<br>轢き : " +
-                //        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume2) + " F使用可能)";
+                //        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume2) + " F使用可能)";
                 break;
             case "Brush":
                 res = "振り : " +
-                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 回使用可能)";
+                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 回使用可能)";
                 //res += "<br>轢き : " +
-                //        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume2) + " F使用可能)";
+                //        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume2) + " F使用可能)";
                 break;
             case "Charger":
                 res = "フルチャージ : " +
-                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 res += "<br>ノンチャージ : " +
-                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume2) + " 発射撃可能)";
+                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume2) + " 発射撃可能)";
                 break;
             case "Slosher":
-                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 break;
             case "Slosher2":
-                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 break;
             case "Slosher3":
-                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                res = (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 break;
             case "Splatling":
-                res = "フルチャージ : " + (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 回射撃可能)";
+                res = "フルチャージ : " + (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 回射撃可能)";
                 break;
             case "Splatling2":
-                res = "フルチャージ : " + (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 回射撃可能)";
+                res = "フルチャージ : " + (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 回射撃可能)";
                 break;
             case "Splatling3":
-                res = "フルチャージ : " + (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 回射撃可能)";
+                res = "フルチャージ : " + (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 回射撃可能)";
                 break;
             case "Dualie":
                 res = "射撃 : " + 
-                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 res += "<br>スライド : " +
-                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume2) + " 回スライド可能)";
+                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume2) + " 回スライド可能)";
                 break;
             case "Dualie2":
                 res = "射撃 : " + 
-                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 res += "<br>スライド : " +
-                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume2) + " 回スライド可能)";
+                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume2) + " 回スライド可能)";
                 break;
             case "Umbrella":
                 res = "射撃 : " +
-                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume1) + " 発射撃可能)";
+                        (mainInkConsume1*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume1) + " 発射撃可能)";
                 res += "<br>パージ : " +
-                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(1/mainInkConsume2) + " 回パージ可能)";
+                        (mainInkConsume2*100).toFixed(2) + "% (合計 " + Math.floor(mainWeapon.ITC/mainInkConsume2) + " 回パージ可能)";
                 break;
         }
         
