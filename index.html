@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=HEAD">
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Splatoon2 Gear Manager | Splatoon2のギアを詳細情報と共に吟味できるサイト Ver 5.2.1対応</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Splatoon2 Gear Manager" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Splatoon2のギアを詳細情報と共に吟味できるサイト Ver 5.2.1対応" />
+<meta property="og:description" content="Splatoon2のギアを詳細情報と共に吟味できるサイト Ver 5.2.1対応" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="Splatoon2 Gear Manager" />
+<script type="application/ld+json">
+{"@type":"WebSite","url":"http://localhost:4000/","headline":"Splatoon2 Gear Manager","name":"Splatoon2 Gear Manager","description":"Splatoon2のギアを詳細情報と共に吟味できるサイト Ver 5.2.1対応","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <h1 id="project_title">Splatoon2 Gear Manager</h1>
+          <h2 id="project_tagline">Splatoon2のギアを詳細情報と共に吟味できるサイト<br> Ver 5.2.1対応
+</h2>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <head>
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/share.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/modal.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript" src="script/imageselect/imageselect.js"></script>
+  <script type="text/javascript" src="script/selects.js"></script>
+  <script type="text/javascript" src="script/share.js"></script>
+  <script type="text/javascript" src="script/localStorage.js"></script>
+  <script type="text/javascript" src="script/gearMatch.js"></script>
+  <script type="text/javascript" src="script/splatData.js"></script>
+  <link href="script/imageselect/imageselect.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+
+<h2 id="ブキ">ブキ</h2>
+
+<div id="weapons">
+  <div id="weaponImageDiv">
+    <img id="weaponImage" />
+    <div id="subSpecial">
+      <img id="subWeaponImage" />
+      <img id="specialWeaponImage" />
+    </div>
+  </div>
+  <div class="weaponDiv">
+    <select id="weaponSelect" name="weaponSelect">
+      <option value="" hidden="" disabled="" selected=""></option>
+      <option value="119">ボールドマーカー</option>
+      <option value="121">ボールドマーカーネオ</option>
+      <option value="120">ボールドマーカー7</option>
+      <option value="138">わかばシューター</option>
+      <option value="129">もみじシューター</option>
+      <option value="28">おちばシューター</option>
+      <option value="45">シャープマーカー</option>
+      <option value="46">シャープマーカーネオ</option>
+      <option value="116">プロモデラーMG</option>
+      <option value="118">プロモデラーRG</option>
+      <option value="117">プロモデラーPG</option>
+      <option value="59">スプラシューター</option>
+      <option value="60">スプラシューターコラボ</option>
+      <option value="61">スプラシューターベッチュー</option>
+      <option value="103">ヒーローシューター レプリカ</option>
+      <option value="27">オクタシューター レプリカ</option>
+      <option value="0">.52ガロン</option>
+      <option value="1">.52ガロンデコ</option>
+      <option value="2">.52ガロンベッチュー</option>
+      <option value="17">N-ZAP85</option>
+      <option value="18">N-ZAP89</option>
+      <option value="16">N-ZAP83</option>
+      <option value="113">プライムシューター</option>
+      <option value="114">プライムシューターコラボ</option>
+      <option value="115">プライムシューターベッチュー</option>
+      <option value="3">.96ガロン</option>
+      <option value="4">.96ガロンデコ</option>
+      <option value="43">ジェットスイーパー</option>
+      <option value="44">ジェットスイーパーカスタム</option>
+      <option value="84">ノヴァブラスター</option>
+      <option value="85">ノヴァブラスターネオ</option>
+      <option value="86">ノヴァブラスターベッチュー</option>
+      <option value="125">ホットブラスター</option>
+      <option value="126">ホットブラスターカスタム</option>
+      <option value="108">ヒーローブラスター レプリカ</option>
+      <option value="135">ロングブラスター</option>
+      <option value="136">ロングブラスターカスタム</option>
+      <option value="137">ロングブラスターネクロ</option>
+      <option value="38">クラッシュブラスター</option>
+      <option value="39">クラッシュブラスターネオ</option>
+      <option value="130">ラピッドブラスター</option>
+      <option value="131">ラピッドブラスターデコ</option>
+      <option value="132">ラピッドブラスターベッチュー</option>
+      <option value="19">Rブラスターエリート</option>
+      <option value="20">Rブラスターエリートデコ</option>
+      <option value="13">L3リールガン</option>
+      <option value="14">L3リールガンD</option>
+      <option value="15">L3リールガンベッチュー</option>
+      <option value="10">H3リールガン</option>
+      <option value="11">H3リールガンD</option>
+      <option value="12">H3リールガンチェリー</option>
+      <option value="127">ボトルガイザー</option>
+      <option value="128">ボトルガイザーフォイル</option>
+      <option value="29">カーボンローラー</option>
+      <option value="30">カーボンローラーデコ</option>
+      <option value="74">スプラローラー</option>
+      <option value="75">スプラローラーコラボ</option>
+      <option value="76">スプラローラーベッチュー</option>
+      <option value="110">ヒーローローラー レプリカ</option>
+      <option value="79">ダイナモローラー</option>
+      <option value="80">ダイナモローラーテスラ</option>
+      <option value="81">ダイナモローラーベッチュー</option>
+      <option value="21">ヴァリアブルローラー</option>
+      <option value="22">ヴァリアブルローラーフォイル</option>
+      <option value="95">パブロ</option>
+      <option value="96">パブロ・ヒュー</option>
+      <option value="89">パーマネント・パブロ</option>
+      <option value="122">ホクサイ</option>
+      <option value="123">ホクサイ・ヒュー</option>
+      <option value="124">ホクサイベッチュー</option>
+      <option value="107">ヒーローブラシ レプリカ</option>
+      <option value="47">スクイックリンα</option>
+      <option value="48">スクイックリンβ</option>
+      <option value="49">スクイックリンγ</option>
+      <option value="68">スプラチャージャー</option>
+      <option value="69">スプラチャージャーコラボ</option>
+      <option value="70">スプラチャージャーベッチュー</option>
+      <option value="106">ヒーローチャージャー レプリカ</option>
+      <option value="62">スプラスコープ</option>
+      <option value="63">スプラスコープコラボ</option>
+      <option value="64">スプラスコープベッチュー</option>
+      <option value="133">リッター4K</option>
+      <option value="134">リッター4Kカスタム</option>
+      <option value="8">4Kスコープ</option>
+      <option value="9">4Kスコープカスタム</option>
+      <option value="6">14式竹筒銃・甲</option>
+      <option value="5">14式竹筒銃・乙</option>
+      <option value="7">14式竹筒銃・丙</option>
+      <option value="77">ソイチューバー</option>
+      <option value="78">ソイチューバーカスタム</option>
+      <option value="92">バケットスロッシャー</option>
+      <option value="94">バケットスロッシャーデコ</option>
+      <option value="93">バケットスロッシャーソーダ</option>
+      <option value="105">ヒーロースロッシャー レプリカ</option>
+      <option value="111">ヒッセン</option>
+      <option value="112">ヒッセン・ヒュー</option>
+      <option value="50">スクリュースロッシャー</option>
+      <option value="51">スクリュースロッシャーネオ</option>
+      <option value="52">スクリュースロッシャーベッチュー</option>
+      <option value="25">オーバーフロッシャー</option>
+      <option value="26">オーバーフロッシャーデコ</option>
+      <option value="23">エクスプロッシャー</option>
+      <option value="24">エクスプロッシャーカスタム</option>
+      <option value="65">スプラスピナー</option>
+      <option value="66">スプラスピナーコラボ</option>
+      <option value="67">スプラスピナーベッチュー</option>
+      <option value="99">バレルスピナー</option>
+      <option value="100">バレルスピナーデコ</option>
+      <option value="101">バレルスピナーリミックス</option>
+      <option value="104">ヒーロースピナー レプリカ</option>
+      <option value="90">ハイドラント</option>
+      <option value="91">ハイドラントカスタム</option>
+      <option value="36">クーゲルシュライバー</option>
+      <option value="37">クーゲルシュライバー・ヒュー</option>
+      <option value="87">ノーチラス47</option>
+      <option value="88">ノーチラス79</option>
+      <option value="56">スパッタリー</option>
+      <option value="57">スパッタリー・ヒュー</option>
+      <option value="58">スパッタリークリア</option>
+      <option value="71">スプラマニューバー</option>
+      <option value="72">スプラマニューバーコラボ</option>
+      <option value="73">スプラマニューバーベッチュー</option>
+      <option value="109">ヒーローマニューバー レプリカ</option>
+      <option value="40">ケルビン525</option>
+      <option value="41">ケルビン525デコ</option>
+      <option value="42">ケルビン525ベッチュー</option>
+      <option value="82">デュアルスイーパー</option>
+      <option value="83">デュアルスイーパーカスタム</option>
+      <option value="34">クアッドホッパーブラック</option>
+      <option value="35">クアッドホッパーホワイト</option>
+      <option value="97">パラシェルター</option>
+      <option value="98">パラシェルターソレーラ</option>
+      <option value="102">ヒーローシェルター レプリカ</option>
+      <option value="31">キャンピングシェルター</option>
+      <option value="33">キャンピングシェルターソレーラ</option>
+      <option value="32">キャンピングシェルターカーモ</option>
+      <option value="53">スパイガジェット</option>
+      <option value="54">スパイガジェットソレーラ</option>
+      <option value="55">スパイガジェットベッチュー</option>
+    </select>
+    <span class="weaponSelectHighlight"></span>
+    <span class="weaponSelectBar"></span>
+    <label class="weaponSelectLabel">Weapon</label>
+  </div>
+</div>
+
+<h2 id="ギア">ギア</h2>
+
+<div class="gearRow">
+  <div class="mainGear">
+    <select name="mainGear1" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+      <option value="15">assets/images/g15.png</option>
+      <option value="16">assets/images/g16.png</option>
+      <option value="17">assets/images/g17.png</option>
+      <option value="18">assets/images/g18.png</option>
+    </select>
+  </div>
+  <div class="subGear">
+    <select name="subGear1" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+    </select>
+  </div>
+  <div class="subGear">
+    <select name="subGear2" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+    </select>
+  </div>
+  <div class="subGear">
+    <select name="subGear3" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+    </select>
+  </div>
+</div>
+
+<div class="gearRow">
+  <div class="mainGear">
+    <select name="mainGear2" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+      <option value="19">assets/images/g19.png</option>
+      <option value="20">assets/images/g20.png</option>
+      <option value="21">assets/images/g21.png</option>
+      <option value="22">assets/images/g22.png</option>
+      <option value="23">assets/images/g23.png</option>
+    </select>
+  </div>
+  <div class="subGear">
+    <select name="subGear4" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+    </select>
+  </div>
+  <div class="subGear">
+    <select name="subGear5" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+    </select>
+  </div>
+  <div class="subGear">
+    <select name="subGear6" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+    </select>
+  </div>
+</div>
+
+<div class="gearRow">
+  <div class="mainGear">
+    <select name="mainGear3" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+      <option value="24">assets/images/g24.png</option>
+      <option value="25">assets/images/g25.png</option>
+      <option value="26">assets/images/g26.png</option>
+    </select>
+  </div>
+  <div class="subGear">
+    <select name="subGear7" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+    </select>
+  </div>
+  <div class="subGear">
+    <select name="subGear8" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+    </select>
+  </div>
+  <div class="subGear">
+    <select name="subGear9" class="imageselect">
+      <option value="0">assets/images/g0.png</option>
+      <option value="1">assets/images/g1.png</option>
+      <option value="2">assets/images/g2.png</option>
+      <option value="3">assets/images/g3.png</option>
+      <option value="4">assets/images/g4.png</option>
+      <option value="5">assets/images/g5.png</option>
+      <option value="6">assets/images/g6.png</option>
+      <option value="7">assets/images/g7.png</option>
+      <option value="8">assets/images/g8.png</option>
+      <option value="9">assets/images/g9.png</option>
+      <option value="10">assets/images/g10.png</option>
+      <option value="11">assets/images/g11.png</option>
+      <option value="12">assets/images/g12.png</option>
+      <option value="13">assets/images/g13.png</option>
+      <option value="14">assets/images/g14.png</option>
+    </select>
+  </div>
+</div>
+
+<p><button class="btnNormal" onclick="saveClicked();">セーブ</button> <button class="btnNormal" onclick="loadClicked();">ロード</button></p>
+
+<body>
+<input type="checkbox" id="modalCheck" />
+<div class="wrapper">
+  <div id="modalCon" class="modalWrap">
+    <div class="modalBg"><label for="modalCheck" class="closeModal"></label></div>
+    <div class="modalCon">
+      <div class="modalInner">
+        <div class="modalCloseBtn"><label for="modalCheck" class="closeModal">×</label></div>
+        <h1 class="ttl modalTtl">ギアセット</h1>
+        <div class="modalText">
+          <p><h3>ギア画像からロードする</h3><input type="file" id="file" /></p>
+          <hr class="partition" style="visibility:hidden;" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+<p><a class="btn btn-icon btn-twitter" href="javascript:void(0)" onclick="shareUrl();"><i class="fa fa-twitter"></i><span>ギアをシェアする!</span></a></p>
+
+<h2 id="性能">性能</h2>
+<h4 id="メインインク消費量">メインインク消費量</h4>
+<p id="mainConsume"></p>
+
+<h4 id="サブインク消費量">サブインク消費量</h4>
+<p id="subConsume"></p>
+
+<h4 id="インク回復">インク回復</h4>
+<p id="inkRecovery"></p>
+
+<h4 id="メインダメージ">メインダメージ</h4>
+<p id="mainDamage"></p>
+
+<h4 id="サブダメージ">サブダメージ</h4>
+<p id="subDamage"></p>
+
+<h4 id="イカ速度">イカ速度</h4>
+<p id="squidVelocity"></p>
+
+<h4 id="ヒト速度">ヒト速度</h4>
+<p id="humanVelocity"></p>
+
+<h4 id="スペシャル必要塗りポイント">スペシャル必要塗りポイント</h4>
+<p id="specialRequiredPoints"></p>
+
+<h4 id="スペシャル減少量">スペシャル減少量</h4>
+<p id="specialDecreaseRate"></p>
+
+<h4 id="復活時間キルできず連続で倒された場合">復活時間(キルできず連続で倒された場合)</h4>
+<p id="revivalTime"></p>
+
+<h4 id="スーパージャンプ時間">スーパージャンプ時間</h4>
+<p id="superJumpTime"></p>
+
+<h4 id="敵インクスリップダメージ">敵インクスリップダメージ</h4>
+<p id="slipDamage"></p>
+
+<h4 id="敵インクスリップダメージ無効時間">敵インクスリップダメージ無効時間</h4>
+<p id="slipInvalidTime"></p>
+
+<h2 id="参考">参考</h2>
+<p>Splatoon2 攻略&amp;検証Wiki : https://wikiwiki.jp/splatoon2mix/<br />
+Leanny GitHub : https://github.com/Leanny</p>
+
+<!-- 画像読み込み→ギア解析 https://www.pazru.net/html5/File/040.html  試し打ち場の真上から見た視線で移動する映像 他の人のURLから来た時の初期ロード　URL化 onChange="" -->
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        
+        <p>Splatoon2 Gear Manager maintained by <a href="https://twitter.com/sisno_boomx" target="_blank">@sisno_boomx</a></p>
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

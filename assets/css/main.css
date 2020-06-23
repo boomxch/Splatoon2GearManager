@@ -1,0 +1,230 @@
+button
+{
+    position: relative;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #2c2c2c;
+    border: solid 1px #4b4b4b;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 1px 0 rgba(133, 86, 86, 0.2);
+}
+
+button:active 
+{
+    border: solid 1px #1f1f1f;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+button.btnNormal
+{
+	margin-left: 16%;
+	width:26%;
+	height:4em;
+	max-width: 10em;
+}
+
+img
+{
+	padding: 0;
+	border-style:none;
+}
+
+.gearRow
+{
+	display: flex;
+	margin: 20px 0 20px 0;
+}
+
+.mainGear
+{
+	width:30.76%;
+	max-width: 100px;
+	margin: 0;
+}
+
+.subGear
+{
+	width:23.07%;
+	max-width: 75px;
+	margin: 25px 0 0 8px;
+}
+
+#weapons
+{
+	display: flex;
+	flex-direction: row;
+}
+
+img#weaponImage
+{
+	width: 98%;
+	margin: 1%;
+}
+
+img#subWeaponImage
+{
+	width: 48%;
+	margin-right: 2%;
+}
+
+img#specialWeaponImage
+{
+	width: 48%;
+	margin-left: 2%;
+}
+
+#weaponImageDiv
+{
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+}
+
+#subSpecial
+{
+	display:flex;
+}
+
+.weaponDiv
+{
+	display: inline-block;
+	vertical-align: top;
+	align-content: center;
+	position: relative;
+	width: 70%;
+	text-align: center;
+	margin: 7.5% 0% 7.5% 2%;
+}
+
+#weaponSelect
+{
+	position: relative;
+	font-family: inherit;
+	background-color: transparent;
+	width: 100%;
+	padding: 10px 10px 10px 0;
+	font-size: 18px;
+	border-radius: 0;
+	border: none;
+	border-bottom: 1px solid rgba(0,0,0, 0.3);
+}
+
+#weaponSelect:focus
+{
+	outline: none;
+	border-bottom: 1px solid rgba(0,0,0, 0);
+}
+
+.weaponDiv #weaponSelect
+{
+	appearance: none;
+	-webkit-appearance:none
+}
+
+.weaponDiv select::-ms-expand
+{
+	display: none;
+}
+
+.weaponDiv:after
+{
+	position: absolute;
+	top: 18px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid rgba(0, 0, 0, 0.3);
+	pointer-events: none;
+}
+
+.weaponSelectLabel
+{
+	color: rgba(0,0,0, 0.5);
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 0;
+	top: 10px;
+	transition: 0.2s ease all;
+}
+
+#weaponSelect:focus ~ .weaponSelectLabel, #weaponSelect:valid ~ .weaponSelectLabel
+{
+	color: #da3c41;
+	top: -20px;
+	transition: 0.2s ease all;
+	font-size: 14px;
+}
+
+.weaponSelectBar 
+{
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.weaponSelectBar:before, .weaponSelectBar:after 
+{
+	content: '';
+	height: 2px;
+	width: 0;
+	bottom: 1px;
+	position: absolute;
+	background: #da3c41;
+	transition: 0.2s ease all;
+}
+
+.weaponSelectBar:before 
+{
+	left: 50%;
+}
+
+.weaponSelectBar:after 
+{
+	right: 50%;
+}
+
+#weaponSelect:focus ~ .weaponSelectBar:before, #weaponSelect:focus ~ .weaponSelectBar:after 
+{
+	width: 50%;
+}
+
+.weaponSelectHighlight
+{
+	position: absolute;
+	top: 25%;
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+select.imageselect
+{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+        text-indent: .01px;
+        text-overflow: "";
+    appearance:none;
+      
+    width:150px;
+    height:50px;
+    border:3px solid #CCC;
+    border-radius:8px;
+    padding-right:30px;
+    background-color:#FFF;
+    cursor:pointer;
+}
+
+.jqis_header
+{
+	width:50px;
+}
