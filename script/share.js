@@ -24,5 +24,5 @@ function shareUrl()
     }
 
     params = btoa(params);
-    window.open("http://twitter.com/share?url=https://boomxch.github.io/Splatoon2GearManager/?" + params + "&text=今のギアはこれ！&hashtags=Splatoon2");
+    window.open("http://twitter.com/share?url=https://boomxch.github.io/Splatoon2GearManager/?" + params + "&text=今のギアはこれ！&hashtags=Splatoon2GearManager,Splatoon2");
 }
