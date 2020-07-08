@@ -100,7 +100,6 @@ $(function()
 
 function loadData(index)
 {
-    console.log(index);
     var json = JSON.parse(localStorage.getItem("Gear" + index));
     $('[name=weaponSelect]').val(json.weapon).change();
 

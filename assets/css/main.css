@@ -27,10 +27,44 @@ button.btnNormal
 	max-width: 10em;
 }
 
+button.btnNormal2
+{
+	margin-left: 32%;
+	width:52%;
+	height:4em;
+	max-width: 10em;
+}
+
 img
 {
 	padding: 0;
 	border-style:none;
+}
+
+.hiddenBox
+{
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+.comparisonBox input:checked ~ .hiddenBox
+{
+    padding: 10px 0;
+	height: auto;
+    opacity: 1;
+}
+
+.better
+{
+	color: green;
+}
+
+.worse
+{
+	color: #da3c41;
 }
 
 .gearRow

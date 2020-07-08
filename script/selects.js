@@ -24,6 +24,12 @@ function load()
             width:mainGearSize,
             height:mainGearSize
         });
+
+        $('select[name=mainGear' + i + 'C]').ImageSelect(
+        {
+            width:mainGearSize,
+            height:mainGearSize
+        });
     }
 
     for(var i = 1; i <= 9; i++)
@@ -33,7 +39,22 @@ function load()
             width:subGearSize,
             height:subGearSize
         });
+
+        $('select[name=subGear' + i + 'C]').ImageSelect(
+        {
+            width:subGearSize,
+            height:subGearSize
+        });
     }
+}
+
+function copyButtonClicked()
+{
+    for(var i = 1; i <= 3; i++)
+        $('[name=mainGear' + i + 'C]').val($('[name=mainGear' + i + ']').val()).change();
+
+    for(var i = 1; i <= 9; i++)
+        $('[name=subGear' + i + 'C]').val($('[name=subGear' + i + ']').val()).change();
 }
 
 $(function()
@@ -43,15 +64,23 @@ $(function()
         var subSpecial = updateDataDisplay();
         $('#weaponImage').attr('src','assets/images/' + $('#weaponSelect').val() + '.png');
         $('#weaponImage').hide().fadeIn();
-        $('#subWeaponImage').attr('src','assets/images/s' + subSpecial[0] + '.png');
         $('#subWeaponImage').hide().fadeIn();
-        $('#specialWeaponImage').attr('src','assets/images/sp' + subSpecial[1] + '.png');
         $('#specialWeaponImage').hide().fadeIn();
+
+        if(subSpecial == null) return;
+        $('#subWeaponImage').attr('src','assets/images/s' + subSpecial[0] + '.png');
+        $('#specialWeaponImage').attr('src','assets/images/sp' + subSpecial[1] + '.png');
     });
 
     for(var i = 1; i <= 3; i++)
     {
         $('select[name=mainGear' + i + ']').change(function()
+        {
+            updateDataDisplay();
+            $(this).ImageSelect("update",{src:$("option:selected", this).text()});
+        });
+
+        $('select[name=mainGear' + i + 'C]').change(function()
         {
             updateDataDisplay();
             $(this).ImageSelect("update",{src:$("option:selected", this).text()});
@@ -65,7 +94,18 @@ $(function()
             updateDataDisplay();
             $(this).ImageSelect("update",{src:$("option:selected", this).text()});
         });
+
+        $('select[name=subGear' + i + 'C]').change(function()
+        {
+            updateDataDisplay();
+            $(this).ImageSelect("update",{src:$("option:selected", this).text()});
+        });
     }
+
+    $('#compareLabel').change(function()
+    {
+        updateDataDisplay();
+    });
 });
 
 window.onload = load;
