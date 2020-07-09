@@ -94,10 +94,10 @@ function updateDataDisplay()
 
         var squidVelocity = Splat2Data.calculateSquidDashVelocity(mainWeapon.MC, gear[19]==10, gear[5]);
         var compSV = Splat2Data.calculateSquidDashVelocity(mainWeapon.MC, compareGear[19]==10, compareGear[5]);
-        var compSV1 = generateCompareText(((squidVelocity * 60 / 50).toFixed(2) - (compSV * 60 / 50).toFixed(2)).toFixed(2), gear[3] >= compareGear[3], "");
-        var compSV2 = generateCompareText(((squidVelocity / 50).toFixed(2) - (compSV / 50).toFixed(2)).toFixed(2), gear[3] >= compareGear[3], "");
-        var compSV3 = generateCompareText(((500 / squidVelocity / 60).toFixed(2) - (500 / compSV / 60).toFixed(2)).toFixed(2), gear[3] >= compareGear[3], "秒");
-        var compSV4 = generateCompareText(((500 / squidVelocity).toFixed() - (500 / compSV).toFixed()).toFixed(), gear[3] >= compareGear[3], "F");
+        var compSV1 = generateCompareText(((squidVelocity * 60 / 50).toFixed(2) - (compSV * 60 / 50).toFixed(2)).toFixed(2), squidVelocity >= compSV, "");
+        var compSV2 = generateCompareText(((squidVelocity / 50).toFixed(2) - (compSV / 50).toFixed(2)).toFixed(2), squidVelocity >= compSV, "");
+        var compSV3 = generateCompareText(((500 / squidVelocity / 60).toFixed(2) - (500 / compSV / 60).toFixed(2)).toFixed(2), squidVelocity >= compSV, "秒");
+        var compSV4 = generateCompareText(((500 / squidVelocity).toFixed() - (500 / compSV).toFixed()).toFixed(), squidVelocity >= compSV, "F");
         $("#squidVelocity").html((squidVelocity * 60 / 50).toFixed(2) + compSV1 + " 本/秒 ( " + (squidVelocity / 50).toFixed(2) + compSV2 + " 本/F)<br>" +
                                 "10本移動にかかる時間 : " + (500 / squidVelocity / 60).toFixed(2) + " 秒" + compSV3 + " ( " + (500 / squidVelocity).toFixed() + " F" + compSV4 + ")" + 
                                 "<br><br>※1本 = 試し撃ち場の1ライン");
@@ -124,7 +124,7 @@ function updateDataDisplay()
 
         var revivalTime = Splat2Data.calculateRespawnTimeSave(gear[22] == 10, gear[9]);
         var compRT = Splat2Data.calculateRespawnTimeSave(compareGear[22] == 10, compareGear[9]);
-        var compRT1 = generateCompareText(((revivalTime / 60).toFixed(2) - (compRT / 60).toFixed(2)).toFixed(2),revivalTime - compRT <= 0, "秒");
+        var compRT1 = generateCompareText(((revivalTime / 60).toFixed(2) - (compRT / 60).toFixed(2)).toFixed(2), revivalTime - compRT <= 0, "秒");
         var compRT2 = generateCompareText(revivalTime - compRT, revivalTime - compRT <= 0, "F");
         $("#revivalTime").html((revivalTime/60).toFixed(2) + " 秒" + compRT1 + " ( " + revivalTime + " F" + compRT2 + ")");
 
