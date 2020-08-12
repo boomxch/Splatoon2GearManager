@@ -189,6 +189,12 @@ class Splat2Data
         for(var i = 0; i < 9; i++)
             gearAmount[sub[i]] += 3;
 
+        // g23の効果を追加
+        if(gearAmount[23] == 0) return gearAmount;
+
+        for(var i = 3; i < 6; i++)
+            gearAmount[sub[i]] += 3;
+
         return gearAmount;
     }
 
