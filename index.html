@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,maximum-scale=2">
     <link rel="manifest" href="./manifest.json">
+    <script>
+      // service workerが有効なら、service-worker.js を登録します
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./service-worker.js');
+     }
+    </script>
     <link rel="stylesheet" type="text/css" media="screen" href="https://boomxch.github.io/Splatoon2GearManager/assets/css/style.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165382832-2"></script>
