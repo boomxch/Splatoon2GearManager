@@ -1,9 +1,10 @@
 // 自身のGearManager(リリースしてない)のC#コードから移植
 // いちいち全ての武器画像やギア画像をキャッシュせずに取ってくるのは、ユーザがそんな頻繁にこの機能を使わないだろうという憶測から
+// 本当はgearMatchと合わせてクラス化した方がよいが、開発時間削減のためそのままコピペ＞＜
 {
 $(function() 
 {
-    $("#file").change(function() 
+    $("#file2").change(function() 
     {
         var file = $(this).prop('files')[0];
         var reader = new FileReader();
@@ -23,12 +24,6 @@ $(function()
             var img = new Image();
             img.onload = function()
             {
-                if(img.naturalWidth != 1280 || img.naturalHeight != 720)
-                {
-                    alert("無編集の画像を選択してください。");
-                    return;
-                }
-
                 var canvas = document.createElement("canvas");
                 canvas.width = img.naturalWidth;
                 canvas.height = img.naturalHeight;
@@ -36,13 +31,51 @@ $(function()
                 var ctx = canvas.getContext("2d");
                 ctx.drawImage(img, 0, 0);
                 
-                gearMatch(ctx.getImageData(0, 0, canvas.width, canvas.height));
+                getGearAreaImage(img, ctx.getImageData(0, 0, canvas.width, canvas.height));
             };
             img.src = reader.result;
         };
         reader.readAsDataURL(file);
     });
 });
+
+function getGearAreaImage(origImg, canvasImg)
+{
+    let aboveY = getGearAreaEndPos(canvasImg, 0, canvasImg.height, canvasImg.width / 2, false);
+    let belowY = getGearAreaEndPos(canvasImg, canvasImg.height * 14 / 15 - 1, -1, canvasImg.width / 2, false); // 下からも見るけど下からの場合、下が灰色なら詰み 詰んだので1/15を引く
+    let leftX = getGearAreaEndPos(canvasImg, 0, canvasImg.width, (aboveY + belowY) / 2, true);
+    let rightX = getGearAreaEndPos(canvasImg, canvasImg.width - 1, -1, (aboveY + belowY) / 2, true);
+
+    var canvas = document.createElement("canvas");
+    canvas.width = 1000;
+    canvas.height = 1000;
+    
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(origImg, leftX, aboveY, rightX - leftX + 1, belowY - aboveY + 1, 0, 0, canvas.width, canvas.height);
+    // console.log(canvas.toDataURL());
+    gearMatch(ctx.getImageData(0, 0, canvas.width, canvas.height));
+}
+
+// ギアの領域(灰色の部分)の模索
+function getGearAreaEndPos(img, start, end, midPos, isXAxis)
+{
+    start = Math.ceil(start);
+    end = Math.ceil(end);
+    midPos = Math.ceil(midPos);
+
+    let ans = 0;
+    let increment = start < end ? 1 : -1;
+    for(var i = start; i != end; i += increment)
+    {
+        var color = isXAxis ? img.data.slice((i + midPos * img.width) * 4, (i + midPos * img.width) * 4 + 4) : img.data.slice((midPos + i * img.width) * 4, (midPos + i * img.width) * 4 + 4);
+        if(!(120 <= color[0] && color[0] <= 140 && 120 <= color[1] && color[1] <= 140 && 120 <= color[2] && color[2] <= 140)) continue;
+
+        ans = i;
+        break;
+    }
+
+    return ans;
+}
 
 let weaponCount;
 let minWeaponNumber;
@@ -61,6 +94,7 @@ function gearMatch(origImg)
     minMainGearMSE = new Array(3).fill(Number.MAX_VALUE);
     minSubGearMSE = new Array(9).fill(Number.MAX_VALUE);
 
+    // 武器画像比較
     for(var i = 0; i <= 138; i++)
     {
         var img = new Image();
@@ -73,7 +107,7 @@ function gearMatch(origImg)
             var ctx = canvas.getContext("2d");
             ctx.drawImage(this, 0, 0);
             
-            var mse = calculateMSE(origImg, ctx.getImageData(0, 0, canvas.width, canvas.height), weaponPos, 30000);
+            var mse = calculateMSE(origImg, ctx.getImageData(0, 0, canvas.width, canvas.height), weaponPos, 30000, true);
             if(mse < minWeaponMSE)
             {
                 minWeaponMSE = mse;
@@ -103,8 +137,8 @@ function gearMatch(origImg)
             ctx.drawImage(this, 0, 0);
 
             var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            var num = this.src.match(".+/(.+?)\.[a-z]+$")[1].substring(1);
-            if(num <= 14) // all
+            var num = this.src.match(".+/(.+?)\.[a-z]+$")[1].substring(2);
+            if(num <= 14 || num == 27) // all
             {
                 var mses = calculateGearMSE(origImg, imgData, false); // 二次元配列
                 for(var j = 0; j < 3; j++)
@@ -118,24 +152,6 @@ function gearMatch(origImg)
                     if(mses[1][j] >= minSubGearMSE[j]) continue;
                     minSubGearMSE[j] = mses[1][j];
                     minSubGearNumber[j] = num;
-                }
-            }
-            else if(num == 27) // エッジ
-            {
-                var mses = calculateGearMSE(origImg, imgData, false);
-                for(var j = 0; j < 3; j++)
-                {
-                    if(mses[0][j] <= 6500) continue;// 境目の定数(ギア開けしていない場所)
-
-                    minMainGearMSE[j] = 0;
-                    minMainGearNumber[j] = 0;
-                }
-                for(var j = 0; j < 9; j++)
-                {
-                    if(mses[1][j] <= 6500) continue;
-                    
-                    minSubGearMSE[j] = 0;
-                    minSubGearNumber[j] = 0;
                 }
             }
             else
@@ -152,41 +168,42 @@ function gearMatch(origImg)
             gearCount++;
             if(gearCount < 28) return;
 
-            // selectの名前を1~にしたの割と後悔してる
+            // ga27はギア開けしていない場合の表示なので、unknownに変更する
             for(var j = 1; j <= 3; j++)
-                $('[name=mainGear' + j + ']').val(minMainGearNumber[j - 1]).change();
+                $('[name=mainGear' + j + ']').val(minMainGearNumber[j - 1] == 27 ? 0 : minMainGearNumber[j - 1]).change();
             for(var j = 1; j <= 9; j++)
-                $('[name=subGear' + j + ']').val(minSubGearNumber[j - 1]).change();
+                $('[name=subGear' + j + ']').val(minSubGearNumber[j - 1] == 27 ? 0 : minSubGearNumber[j - 1]).change();
             
             // モーダル解除
             $("#modalCheck").prop('checked', false).change();
         };
-        img.src = "assets/images/g" + i + ".png";
+        img.src = "assets/images/ga" + i + ".png";
     }
 }
 
-const weaponPos = [269, 562, 369, 662];
+// x/1000
+const weaponPos = [320, 165, 681, 396];
 const mainGearPos = 
 [
-    [402, 663, 439, 700],
-    [547, 663, 584, 700],
-    [692, 663, 729, 700]
+    [437,547,550,621],
+    [437,699,550,773],
+    [437,851,550,925]
 ];
 const subGearPos = 
 [
-    [439, 673, 467, 700],
-    [468, 673, 496, 700],
-    [496, 673, 524, 700],
-    [584, 673, 612, 700],
-    [613, 673, 641, 700],
-    [641, 673, 669, 700],
-    [729, 673, 757, 700],
-    [758, 673, 786, 700],
-    [786, 673, 814, 700]
+    [566,560,641,609],
+    [657,560,732,609],
+    [748,560,823,609],
+    [566,712,641,761],
+    [657,712,732,761],
+    [748,712,823,761],
+    [566,864,641,913],
+    [657,864,732,913],
+    [748,864,823,913]
 ];
 
 // 定数あり
-function calculateMSE(origImg, weaponImg, origImgPos, c = 0)
+function calculateMSE(origImg, weaponImg, origImgPos, c = 0, skipGray = false)
 {
     var mse = 0;
     
@@ -197,12 +214,15 @@ function calculateMSE(origImg, weaponImg, origImgPos, c = 0)
         {
             var rateY = (j - origImgPos[1]) / (origImgPos[3] - origImgPos[1]);
 
+            var color = origImg.data.slice((i + j * origImg.width) * 4, (i + j * origImg.width) * 4 + 4);
             var weaponColor = getColorFromRate(weaponImg, rateX, rateY);
+            // 灰色部分はカット
+            if(120 <= color[0] && color[0] <= 140 && 120 <= color[1] && color[1] <= 140 && 120 <= color[2] && color[2] <= 140) continue;
             // 透明部分はカット
             if(weaponColor[3] == 0) continue;
 
             for(var k = 0; k < 3; k++) // RGBだけのMSE
-                mse += Math.pow(origImg.data[(i + j * origImg.width) * 4 + k] - weaponColor[k], 2);
+                mse += Math.pow(color[k] - weaponColor[k], 2);
                 
             // 一致しているピクセルが多い方がヒットしやすくするため（デコなど）定数を引く(定数部分適当すぎワロタ)
             mse -= c;
