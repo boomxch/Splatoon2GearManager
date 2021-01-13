@@ -2,10 +2,12 @@
 // いちいち全ての武器画像やギア画像をキャッシュせずに取ってくるのは、ユーザがそんな頻繁にこの機能を使わないだろうという憶測から
 // 本当はgearMatchと合わせてクラス化した方がよいが、開発時間削減のためそのままコピペ＞＜
 {
+// var startTime;
 $(function() 
 {
     $("#file2").change(function() 
     {
+        // startTime = performance.now();
         var file = $(this).prop('files')[0];
         var reader = new FileReader();
 
@@ -67,8 +69,10 @@ function getGearAreaEndPos(img, start, end, midPos, isXAxis)
     let increment = start < end ? 1 : -1;
     for(var i = start; i != end; i += increment)
     {
-        var color = isXAxis ? img.data.slice((i + midPos * img.width) * 4, (i + midPos * img.width) * 4 + 4) : img.data.slice((midPos + i * img.width) * 4, (midPos + i * img.width) * 4 + 4);
-        if(!(120 <= color[0] && color[0] <= 140 && 120 <= color[1] && color[1] <= 140 && 120 <= color[2] && color[2] <= 140)) continue;
+        var index = isXAxis ? (i + midPos * img.width) * 4 : (midPos + i * img.width) * 4;
+        if(!(120 <= img.data[index] && img.data[index] <= 140 &&
+            120 <= img.data[index + 1] && img.data[index + 1] <= 140 &&
+            120 <= img.data[index + 2] && img.data[index + 2] <= 140)) continue;
 
         ans = i;
         break;
@@ -118,6 +122,7 @@ function gearMatch(origImg)
             weaponCount++;
             if(weaponCount < 139) return;
 
+            // console.log(performance.now() - startTime);
             $('[name=weaponSelect]').val(minWeaponNumber).change();
         };
         img.src = "assets/images/" + i + ".png";
@@ -168,6 +173,7 @@ function gearMatch(origImg)
             gearCount++;
             if(gearCount < 28) return;
 
+            // console.log(performance.now() - startTime);
             // ga27はギア開けしていない場合の表示なので、unknownに変更する
             for(var j = 1; j <= 3; j++)
                 $('[name=mainGear' + j + ']').val(minMainGearNumber[j - 1] == 27 ? 0 : minMainGearNumber[j - 1]).change();
@@ -207,22 +213,24 @@ function calculateMSE(origImg, weaponImg, origImgPos, c = 0, skipGray = false)
 {
     var mse = 0;
     
-    for(var i = origImgPos[0]; i <= origImgPos[2]; i++)
+    for(var i = origImgPos[0]; i <= origImgPos[2]; i+=4)
     {
         var rateX = (i - origImgPos[0]) / (origImgPos[2] - origImgPos[0]);
-        for(var j = origImgPos[1]; j <= origImgPos[3]; j++)
+        for(var j = origImgPos[1]; j <= origImgPos[3]; j+=4)
         {
             var rateY = (j - origImgPos[1]) / (origImgPos[3] - origImgPos[1]);
 
-            var color = origImg.data.slice((i + j * origImg.width) * 4, (i + j * origImg.width) * 4 + 4);
             var weaponColor = getColorFromRate(weaponImg, rateX, rateY);
             // 灰色部分はカット
-            if(120 <= color[0] && color[0] <= 140 && 120 <= color[1] && color[1] <= 140 && 120 <= color[2] && color[2] <= 140) continue;
+            var index = (i + j * origImg.width) * 4;
+            if(120 <= origImg.data[index] && origImg.data[index] <= 140 &&
+                120 <= origImg.data[index + 1] && origImg.data[index + 1] <= 140 &&
+                120 <= origImg.data[index + 2] && origImg.data[index + 2] <= 140) continue;
             // 透明部分はカット
             if(weaponColor[3] == 0) continue;
 
             for(var k = 0; k < 3; k++) // RGBだけのMSE
-                mse += Math.pow(color[k] - weaponColor[k], 2);
+                mse += Math.pow(origImg.data[index + k] - weaponColor[k], 2);
                 
             // 一致しているピクセルが多い方がヒットしやすくするため（デコなど）定数を引く(定数部分適当すぎワロタ)
             mse -= c;

@@ -1,10 +1,12 @@
 // 自身のGearManager(リリースしてない)のC#コードから移植
 // いちいち全ての武器画像やギア画像をキャッシュせずに取ってくるのは、ユーザがそんな頻繁にこの機能を使わないだろうという憶測から
 {
+// var startTime;
 $(function() 
 {
     $("#file").change(function() 
     {
+        // startTime = performance.now();
         var file = $(this).prop('files')[0];
         var reader = new FileReader();
 
@@ -84,6 +86,7 @@ function gearMatch(origImg)
             weaponCount++;
             if(weaponCount < 139) return;
 
+            // console.log(performance.now() - startTime);
             $('[name=weaponSelect]').val(minWeaponNumber).change();
         };
         img.src = "assets/images/" + i + ".png";
@@ -152,6 +155,7 @@ function gearMatch(origImg)
             gearCount++;
             if(gearCount < 28) return;
 
+            // console.log(performance.now() - startTime);
             // selectの名前を1~にしたの割と後悔してる
             for(var j = 1; j <= 3; j++)
                 $('[name=mainGear' + j + ']').val(minMainGearNumber[j - 1]).change();
