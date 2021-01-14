@@ -54,7 +54,8 @@ img
 {
     padding: 10px 0;
 	height: auto;
-    opacity: 1;
+	opacity: 1;
+	overflow: visible;
 }
 
 .better
